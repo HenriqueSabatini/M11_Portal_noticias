@@ -1,0 +1,204 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, sans-serif;
+}
+
+.container{
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header .container {
+    display: flex; /*deixou o formulario ao lado do texto (h1)*/
+    justify-content: space-between; /*colocou o h1 na parte esquerda do pagina e o formulario na parte direita*/
+    align-items: center;
+}
+
+header {
+    padding: 16px 0 0;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 56px;
+}
+
+.submenu {
+    display: none; /*vamos deixar o SubTitulo invisivel*/
+    background-color: rgb(0, 78, 4);
+    border: 2px solid rgb(0, 0, 0);
+    position: absolute; /*quando o menu do lado é aberto nao desloca o outro*/
+    left: 0; /*o menu começa no ponto 0 a esquerda da pagina*/
+    width: 300px; /*tamanho do menu*/
+    top: 100%; /*aqui definimos que o menu começe ao fim da linha que divide o cabeçalho exatamente no top*/
+}
+
+.menu > li{
+    float: left; /*deixa os titulos principal lado a lado*/
+    list-style-type: none; /*remove os topicos ao lado dos menus*/
+    padding: 16px;
+    border-top: 4px solid transparent;
+    position: relative; /*o bloquei que os nomes dos menus ultrapasse o contaneir dele*/
+}
+
+.clear {
+    clear: both; /*este elemento resolve um problema que o float acima causa que deixa as palavras grudadas sem espaçamento, usamos both para remosver o problema na esquerda e direita da palavra*/
+}
+
+.menu li:hover .submenu { /*Usamos o hover para que quando passar o mouse em cima do menu os subTitulos apareçam*/
+    display: block;
+}
+
+.menu li:hover {
+    border-color: rgb(0, 78, 4);; /*borda em cima ao passar o mouse no menu*/
+}
+
+.submenu li{ 
+    display: block; /*os submenus aparecem um abaixo do outro em blocos*/
+    padding: 8px;
+}
+
+.submenu li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.submenu li a:hover {
+    text-decoration:underline;
+    color: rgb(253, 253, 253);
+    font-weight: bold;
+}
+
+.conteudo {
+    display: grid; /*aqui definimos o layout da pagina para ficar a noticia do esquerdo principal com 70% e as "novidades" do lado direito com 30%*/
+    grid-template-columns: 70% 30%;
+}
+
+.noticia img{
+    max-width: 100%; /*Defimos que as imagens tem que ocupar ate 100% do container e nao ultrapassar eles na pagina*/ 
+}
+
+.destaque {
+    margin-bottom: 56px;
+}
+
+.destaque .noticia a { /*estilizando o link > da noticia > do destaque*/
+    display: flex;
+    font-size: 2em;
+}
+
+.destaque .noticia img { /*estilizando a imagem > da noticia > do destaque*/
+    margin-right: 8px; /*margem na direita da imagem*/
+}
+
+section h2 {
+    margin-bottom: 32px; /*margem abaixo do h2*/
+}
+
+aside {
+    padding-left: 40px; /*martgem a esquerda da coluna novidades*/
+}
+
+aside .noticia{
+    margin-bottom: 24px; /*margem inferior nas noticias das novidades*/
+}
+
+.noticias { /*estilizando a paret "Utima Hora"*/
+    display: grid;
+    grid-template-columns: repeat(3, 32.6%) /*ou 33.3% 33.3% 33.3%;*/; /*aqui definimos que no espaço de 100% cada uma vai oculpar 33% da tela*/
+    column-gap: 1%; /*Espaço entre os noticias dentro do container (esquerda e direita)*/
+    row-gap: 5%; /*espaço nas linha abaixo*/
+}
+
+/*AQUI VAMOS FAZER TODA MODIFICAÇÃO PARA QUE O SITE FIQUE RESPOSSIVO AO TAMANHO DE TELAS MENORES COMO CELULARES*/
+
+@media screen and (max-width: 767px){ /*aqui definimos o tamanho maximo da pagina para 767px tela de um celular*/
+    .conteudo {
+        display: block; /*mudamos de flex para block*/
+    } 
+
+    .container {
+        max-width: 90%; /*tamanho do container*/
+    } 
+
+    .destaque .noticia a {
+        display: block;
+        font-size: 1.5em;
+    }
+
+    .destaque .noticia img {
+        margin-right: 0;
+    }
+
+    .noticias {
+        display: block;
+    }
+
+    .noticias .noticia {
+        margin-bottom: 32px;
+    }
+
+    aside{
+        padding-left: 0; /*mudamos de 40px para 0px*/
+    }
+
+    header .container {
+        flex-direction: column; /*no responssivo ele centraliza as colunas*/
+    }
+
+    .submenu {
+        display: block;
+        background-color: rgb(0, 78, 4);
+        border: 2px solid rgb(0, 0, 0);
+        position: relative; /*Deixa os menus um abaixo do outro*/
+    }
+
+    .menu {
+        display: none; /*deixamos o menu invisivem para abrir com o botão*/
+    }
+
+    .menu > li{
+        clear: both; /*no responssivo deixamos os menus tudo embaixo um do outro*/
+    }
+
+    .submenu li{ 
+        display: block; /*os submenus aparecem um abaixo do outro em blocos*/
+        padding: 8px;
+    }
+
+    .botao-menu {
+        display: flex;
+        justify-content: center; /*centaliza na tela*/
+        margin-top: 16px; /*margem parte de cima*/
+        padding-bottom: 16px; /*margem parte de baixo*/
+    }
+
+    .botao-menu button {
+        padding: 8px;
+    }
+}
+
+/*AQUI VAMOS FAZER TODA MODIFICAÇÃO PARA QUE O SITE FIQUE RESPOSSIVO AO TAMANHO DE TELAS DE IPADs*/
+@media screen and (min-width: 768px) and (max-width: 1023px) { /*esse tamanho é um ipad depois de 1023px ja se orna desktop (notebook)*/
+    .container {
+        max-width: 90%;
+    }
+
+    .botao-menu {
+        display: none; /*no caso de ipads ou tablets nao vamos precisar do botão descer o menu*/
+    }
+
+    .destaque .noticia a {
+        font-size: 1.5em; /*diminuimos a fonte para nao ficar tao apertado*/
+    }
+
+    .noticias {
+        grid-template-columns: repeat(2, 49%); /*aqui mudamos de 3 colunas para somente duas*/
+    }
+}
+
+@media screen and (min-width: 1024px){ /*aqui tiramo o botao do menu para nao aparecer acima de 1024px (tamnho de notebooks), pois nao precisa*/
+    .botao-menu {
+        display: none; 
+    }
+}
